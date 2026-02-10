@@ -7,7 +7,7 @@ interface TileComponentProps {
   onClick?: () => void;
   selected?: boolean;
   disabled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 const TileComponent: React.FC<TileComponentProps> = ({ 
@@ -30,9 +30,10 @@ const TileComponent: React.FC<TileComponentProps> = ({
 
   const getSizeClasses = () => {
     switch (size) {
-      case 'sm': return 'w-8 h-10 text-lg';
-      case 'lg': return 'w-14 h-20 text-3xl';
-      default: return 'w-10 h-14 text-xl';
+      case 'xs': return 'w-6 h-8 text-xs';
+      case 'sm': return 'w-8 h-10 text-base md:w-9 md:h-12';
+      case 'lg': return 'w-12 h-16 text-2xl md:w-14 md:h-20 md:text-3xl';
+      default: return 'w-9 h-12 text-lg md:w-10 md:h-14 md:text-xl';
     }
   };
 
@@ -42,14 +43,14 @@ const TileComponent: React.FC<TileComponentProps> = ({
       className={`
         ${getSizeClasses()}
         ${getColorClass()}
-        ${selected ? 'ring-4 ring-yellow-400 translate-y-[-4px]' : 'hover:translate-y-[-2px]'}
-        ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-        bg-white rounded-md border-b-4 border-gray-300 flex items-center justify-center font-bold 
-        select-none transition-all duration-200 tile-shadow m-0.5
+        ${selected ? 'ring-2 md:ring-4 ring-yellow-400 -translate-y-1' : 'hover:-translate-y-0.5'}
+        ${disabled ? 'opacity-80 cursor-default' : 'cursor-pointer active:scale-95'}
+        bg-white rounded-md border-b-2 md:border-b-4 border-gray-300 flex items-center justify-center font-bold 
+        select-none transition-all duration-200 tile-shadow m-0.5 flex-shrink-0
       `}
     >
       {tile.isJoker ? (
-        <span className="text-2xl">☺</span>
+        <span className="text-xl md:text-2xl">☺</span>
       ) : (
         tile.number
       )}

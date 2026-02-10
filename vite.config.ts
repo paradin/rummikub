@@ -4,10 +4,11 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // 保持相对路径，这样无论部署在根目录还是子目录都能正常工作
+  base: './', // 核心设置：使用相对路径，确保在 username.github.io/repo/ 下能找到资源
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    emptyOutDir: true
+    emptyOutDir: true,
+    target: 'esnext'
   }
 });
